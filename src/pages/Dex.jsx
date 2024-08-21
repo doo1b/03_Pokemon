@@ -1,26 +1,37 @@
 import React from "react";
 import styled from "styled-components";
-import PokeBox from "./PokeBox";
-import PokeList from "./PokeList";
+import Dashboard from "../component/Dashboard";
+import PokeList from "../component/PokeList";
 import MOCK_DATA from "../mock";
+import { useState } from "react";
 
 const MainBox = styled.div`
-  width: 1200px;
+  min-width: 1200px;
   height: fit-content;
   background-color: white;
   border-radius: 10px;
   padding: 20px 40px;
-  margin-top: 30px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 function Dex() {
+  const [selectPokemon, setSelectPokemon] = useState([]);
+
+  const addPokemon = (pokemon) => {
+    selectPokemon.length > 6
+      ? alert("최대 6개의 포켓몬만 등록할 수 있습니다")
+      : selectPokemon.some((p) => p.id === pokemon.id)
+      ? alert("같은 포켓몬은 중복으로 등록할 수 없습니다.")
+      : setSelectPokemon((prev) => [...prev, pokemon]);
+  };
+
   return (
     <MainBox>
-      <PokeBox />
-      <PokeList pokelist={MOCK_DATA} />
+      <Dashboard selectPokemon={selectPokemon} />
+      <PokeList pokelist={MOCK_DATA} addPokemon={addPokemon} />
     </MainBox>
   );
 }
