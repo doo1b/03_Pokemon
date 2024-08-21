@@ -20,6 +20,10 @@ const MainBox = styled.div`
 function Dex() {
   const [selectPokemon, setSelectPokemon] = useState([]);
 
+  const delPokemon = (id) => {
+    setSelectPokemon((pokemon) => pokemon.filter((p) => p.id !== id));
+  };
+
   const addPokemon = (pokemon) => {
     selectPokemon.length > 6
       ? alert("최대 6개의 포켓몬만 등록할 수 있습니다")
@@ -30,7 +34,7 @@ function Dex() {
 
   return (
     <MainBox>
-      <Dashboard selectPokemon={selectPokemon} />
+      <Dashboard selectPokemon={selectPokemon} delPokemon={delPokemon} />
       <PokeList pokelist={MOCK_DATA} addPokemon={addPokemon} />
     </MainBox>
   );

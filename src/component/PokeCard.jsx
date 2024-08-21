@@ -12,6 +12,8 @@ const PokeCards = styled.div`
   border-radius: 10px;
   justify-content: space-evenly;
   transition: 0.2s;
+  font-family: "DungGeunMo";
+  font-weight: 500;
   &:hover {
     box-shadow: 0 5px 10px rgb(0, 0, 0, 0.2);
     transform: translateY(-5px);
@@ -19,7 +21,7 @@ const PokeCards = styled.div`
 `;
 
 const NameP = styled.p`
-  font-weight: 900;
+  font-size: 17px;
 `;
 
 const NumP = styled.p`
@@ -35,7 +37,7 @@ const AddButton = styled.button`
   background-position: bottom left;
   background-size: 300%;
   color: white;
-  font-weight: bold;
+  font-weight: 900;
   transition: 0.2s ease-in;
 
   &:hover {

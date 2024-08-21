@@ -11,6 +11,7 @@ const InputBox = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 20px 0;
+  align-items: center;
 `;
 
 const Title = styled.p`
@@ -21,24 +22,33 @@ const Title = styled.p`
 
 const PokeBall = styled.img`
   width: 100px;
-  margin: 20px;
-  padding: 20px 0;
+  height: 100px;
+  margin: 50px 20px;
 `;
 
-const Dashboard = ({ selectPokemon }) => {
+const Dashboard = ({ selectPokemon, delPokemon }) => {
+  const maxPokemonCount = 6;
+
   return (
     <>
       <Title>나만의 포켓몬</Title>
       <InputBox>
         {selectPokemon.map((pokemon) => (
-          <SelectPokemonCard key={pokemon.id} pokemon={pokemon} />
+          <SelectPokemonCard
+            key={pokemon.id}
+            pokemon={pokemon}
+            delPokemon={delPokemon}
+          />
         ))}
-        <PokeBall src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png' />
-        <PokeBall src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png' />
-        <PokeBall src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png' />
-        <PokeBall src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png' />
-        <PokeBall src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png' />
-        <PokeBall src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png' />
+
+        {Array.from({ length: maxPokemonCount - selectPokemon.length }).map(
+          (ball, index) => (
+            <PokeBall
+              key={index}
+              src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png'
+            />
+          )
+        )}
       </InputBox>
     </>
   );
