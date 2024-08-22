@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PokeImg = styled.img`
-  width: 50%;
+  width: 40%;
 `;
 
 const HomeBox = styled.div`
@@ -23,7 +23,6 @@ const DexButton = styled.button`
   background-color: #537ed5;
   color: white;
   font-size: 1vw;
-  font-weight: 900;
 `;
 
 function Home() {
@@ -33,7 +32,7 @@ function Home() {
       <PokeImg src='https://react-6-pokemon.vercel.app/assets/pokemon-logo-RN0wntMB.png' />
       <DexButton
         onClick={() => {
-          navigate("Dex");
+          navigate("dex");
         }}
       >
         포켓몬 도감 시작하기

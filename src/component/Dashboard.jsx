@@ -17,7 +17,6 @@ const InputBox = styled.div`
 const Title = styled.p`
   margin: 70px 0;
   font-size: 50px;
-  font-family: "DungGeunMo";
 `;
 
 const PokeBall = styled.img`

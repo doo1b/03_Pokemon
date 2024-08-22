@@ -12,14 +12,18 @@ const ListBox = styled.div`
   justify-content: center;
 `;
 
-const PokeList = ({ pokelist, addPokemon }) => {
-  console.log(pokelist);
+const PokeList = ({ pokelist, addPokemon, selectPokemon }) => {
   return (
     <>
       <ListBox>
         {pokelist.map((pokemon, index) => {
           return (
-            <PokeCard key={index} pokemon={pokemon} addPokemon={addPokemon} />
+            <PokeCard
+              key={index}
+              pokemon={pokemon}
+              addPokemon={addPokemon}
+              isSelect={selectPokemon.some((p) => p.id === pokemon.id)}
+            />
           );
         })}
       </ListBox>

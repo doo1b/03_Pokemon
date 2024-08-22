@@ -6,7 +6,8 @@ import MOCK_DATA from "../mock";
 import { useState } from "react";
 
 const MainBox = styled.div`
-  min-width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   height: fit-content;
   background-color: white;
   border-radius: 10px;
@@ -25,17 +26,23 @@ function Dex() {
   };
 
   const addPokemon = (pokemon) => {
-    selectPokemon.length > 6
-      ? alert("최대 6개의 포켓몬만 등록할 수 있습니다")
-      : selectPokemon.some((p) => p.id === pokemon.id)
+    selectPokemon.some((p) => p.id === pokemon.id)
       ? alert("같은 포켓몬은 중복으로 등록할 수 없습니다.")
+      : selectPokemon.length >= 6
+      ? alert("최대 6개의 포켓몬만 등록할 수 있습니다")
       : setSelectPokemon((prev) => [...prev, pokemon]);
   };
+
+  console.log(MOCK_DATA.map((pokemon) => pokemon.types));
 
   return (
     <MainBox>
       <Dashboard selectPokemon={selectPokemon} delPokemon={delPokemon} />
-      <PokeList pokelist={MOCK_DATA} addPokemon={addPokemon} />
+      <PokeList
+        pokelist={MOCK_DATA}
+        addPokemon={addPokemon}
+        selectPokemon={selectPokemon}
+      />
     </MainBox>
   );
 }
