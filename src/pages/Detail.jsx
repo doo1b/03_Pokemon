@@ -40,7 +40,7 @@ const getTypeColor = (type) => {
     case "페어리":
       return "#EF70EF";
     default:
-      return "#black"; // 기본 색상
+      return "black"; // 기본 색상
   }
 };
 
@@ -113,6 +113,7 @@ const Detail = () => {
     return pokemon.id === Number(id);
   });
 
+  console.log(detailPokemon);
   return (
     <>
       <DetailBall>

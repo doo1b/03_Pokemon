@@ -33,8 +33,6 @@ function Dex() {
       : setSelectPokemon((prev) => [...prev, pokemon]);
   };
 
-  console.log(MOCK_DATA.map((pokemon) => pokemon.types));
-
   return (
     <MainBox>
       <Dashboard selectPokemon={selectPokemon} delPokemon={delPokemon} />
