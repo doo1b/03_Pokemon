@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Dashboard from "../component/Dashboard";
 import PokeList from "../component/PokeList";
 import MOCK_DATA from "../mock";
-import { PokemonProvider } from "../context/PokemonContext ";
 
 const MainBox = styled.div`
   max-width: 1200px;
@@ -20,12 +19,10 @@ const MainBox = styled.div`
 
 function Dex() {
   return (
-    <PokemonProvider>
-      <MainBox>
-        <Dashboard />
-        <PokeList pokelist={MOCK_DATA} />
-      </MainBox>
-    </PokemonProvider>
+    <MainBox>
+      <Dashboard />
+      <PokeList pokelist={MOCK_DATA} />
+    </MainBox>
   );
 }
 

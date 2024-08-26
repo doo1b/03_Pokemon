@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import MOCK_DATA from "../mock";
+import { usePokemon } from "../context/PokemonContext ";
+import Swal from "sweetalert2";
 
 const getTypeColor = (type) => {
   switch (type) {
@@ -96,24 +98,49 @@ const Description = styled.p`
 `;
 
 const BackButton = styled.button`
-  margin-bottom: -100px;
-  margin-top: 100px;
   padding: 10px;
   border: none;
   border-radius: 15px;
   background-color: #ffe9e9;
 `;
 
+const AddButton = styled.button`
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: #537ed5;
+  color: white;
+`;
+
+const ButtonBox = styled.div`
+  margin-bottom: -50px;
+  margin-top: 80px;
+  width: 150px;
+  justify-content: space-between;
+  display: flex;
+`;
+
 const Detail = () => {
   const navigate = useNavigate();
-  const [pokemonId, setPokemonId] = useSearchParams();
+  const [pokemonId] = useSearchParams();
   const pokemonList = MOCK_DATA;
-  const id = pokemonId.get("id");
-  const detailPokemon = pokemonList.find((pokemon) => {
-    return pokemon.id === Number(id);
-  });
 
-  console.log(detailPokemon);
+  const id = pokemonId.get("id");
+  const detailPokemon = pokemonList.find(
+    (pokemon) => pokemon.id === Number(id)
+  );
+
+  const { addPokemon } = usePokemon();
+
+  const handleAdd = () => {
+    if (addPokemon(detailPokemon)) {
+      return Swal.fire({
+        text: "포켓몬이 등록 되었습니다!",
+        icon: "success",
+      });
+    }
+  };
+
   return (
     <>
       <DetailBall>
@@ -131,7 +158,10 @@ const Detail = () => {
             </Type>
           ))}
         </div>
-        <BackButton onClick={() => navigate(-1)}>뒤로가기</BackButton>
+        <ButtonBox>
+          <AddButton onClick={handleAdd}>추가</AddButton>
+          <BackButton onClick={() => navigate(-1)}>뒤로가기</BackButton>
+        </ButtonBox>
       </DetailBall>
     </>
   );
