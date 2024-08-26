@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Dashboard from "../component/Dashboard";
 import PokeList from "../component/PokeList";
 import MOCK_DATA from "../mock";
-import { useState } from "react";
 import { PokemonProvider } from "../context/PokemonContext ";
 
 const MainBox = styled.div`

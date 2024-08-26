@@ -1,9 +1,16 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const PokemonContext = createContext();
 
 export function PokemonProvider({ children }) {
-  const [selectPokemon, setSelectPokemon] = useState([]);
+  const [selectPokemon, setSelectPokemon] = useState(() => {
+    const savePokemon = localStorage.getItem("selectPokemon");
+    return savePokemon ? JSON.parse(savePokemon) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selectPokemon", JSON.stringify(selectPokemon));
+  }, [selectPokemon]);
 
   const delPokemon = (id) => {
     setSelectPokemon((pokemon) => pokemon.filter((p) => p.id !== id));
