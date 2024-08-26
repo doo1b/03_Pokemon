@@ -11,6 +11,7 @@ const ListBox = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 25px 25px;
   justify-content: center;
+  align-items: center;
 `;
 
 const PokeList = ({ pokelist }) => {

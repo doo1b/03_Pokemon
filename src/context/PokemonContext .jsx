@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const PokemonContext = createContext();
 
@@ -18,9 +19,15 @@ export function PokemonProvider({ children }) {
 
   const addPokemon = (pokemon) => {
     selectPokemon.some((p) => p.id === pokemon.id)
-      ? alert("같은 포켓몬은 중복으로 등록할 수 없습니다.")
+      ? Swal.fire({
+          text: "같은 포켓몬은 중복으로 등록할 수 없습니다!",
+          icon: "warning",
+        })
       : selectPokemon.length >= 6
-      ? alert("최대 6개의 포켓몬만 등록할 수 있습니다")
+      ? Swal.fire({
+          text: "더 이상 포켓몬을 등록할 수 없습니다!",
+          icon: "error",
+        })
       : setSelectPokemon((prev) => [...prev, pokemon]);
   };
 

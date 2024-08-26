@@ -9,10 +9,11 @@ const InputBox = styled.div`
   border: 3px dashed #ffc8c8;
   border-radius: 30px;
   margin-bottom: 30px;
-  display: flex;
-  justify-content: space-evenly;
-  padding: 20px 0;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(6, 200px);
+  justify-content: space-around;
+  justify-items: center;
+  padding: 20px 10px;
 `;
 
 const Title = styled.p`
@@ -22,8 +23,7 @@ const Title = styled.p`
 
 const PokeBall = styled.img`
   width: 100px;
-  height: 100px;
-  margin: 50px 20px;
+  margin: 50px 0;
 `;
 
 const Dashboard = () => {
