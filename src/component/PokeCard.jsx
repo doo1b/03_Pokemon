@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { NameP, NumP } from "../GlobalStyle";
+import { usePokemon } from "../context/PokemonContext ";
 
 const PokeCards = styled.div`
   justify-self: center;
@@ -42,9 +43,10 @@ const AddButton = styled.button`
   }
 `;
 
-const PokeCard = ({ pokemon, addPokemon, isSelect }) => {
+const PokeCard = ({ pokemon, isSelect }) => {
   const navigate = useNavigate();
 
+  const { addPokemon } = usePokemon();
   const handleAdd = () => {
     addPokemon(pokemon);
   };

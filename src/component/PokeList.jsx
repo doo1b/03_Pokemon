@@ -1,6 +1,7 @@
 import React from "react";
 import PokeCard from "./PokeCard";
 import styled from "styled-components";
+import { usePokemon } from "../context/PokemonContext ";
 
 const ListBox = styled.div`
   margin-top: 20px;
@@ -12,7 +13,8 @@ const ListBox = styled.div`
   justify-content: center;
 `;
 
-const PokeList = ({ pokelist, addPokemon, selectPokemon }) => {
+const PokeList = ({ pokelist }) => {
+  const { addPokemon, selectPokemon } = usePokemon();
   return (
     <>
       <ListBox>

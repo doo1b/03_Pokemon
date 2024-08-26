@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SelectPokemonCard from "./SelectPokemonCard";
+import { usePokemon } from "../context/PokemonContext ";
 
 const InputBox = styled.div`
   width: 1200px;
@@ -25,7 +26,8 @@ const PokeBall = styled.img`
   margin: 50px 20px;
 `;
 
-const Dashboard = ({ selectPokemon, delPokemon }) => {
+const Dashboard = () => {
+  const { selectPokemon, delPokemon } = usePokemon();
   const maxPokemonCount = 6;
 
   return (
@@ -41,10 +43,10 @@ const Dashboard = ({ selectPokemon, delPokemon }) => {
         ))}
 
         {Array.from({ length: maxPokemonCount - selectPokemon.length }).map(
-          (ball, index) => (
+          (_, index) => (
             <PokeBall
               key={index}
-              src='https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png'
+              src="https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png"
             />
           )
         )}
