@@ -48,7 +48,7 @@ const Dashboard = () => {
         {Array.from({ length: maxPokemonCount - selectPokemon.length }).map(
           (_, index) => (
             <PokeBall
-              key={index}
+              key={`ball-${index}`}
               src="https://react-6-pokemon.vercel.app/assets/pokeball-13iwdk7Y.png"
             />
           )

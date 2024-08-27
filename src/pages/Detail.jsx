@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import MOCK_DATA from "../mock";
 import { addPokemon } from "../redux/slices/pokemonSlice";
-import Swal from "sweetalert2";
 
 const getTypeColor = (type) => {
   switch (type) {
