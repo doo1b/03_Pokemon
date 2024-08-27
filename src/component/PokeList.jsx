@@ -22,7 +22,7 @@ const PokeList = ({ pokelist }) => {
         {pokelist.map((pokemon, index) => {
           return (
             <PokeCard
-              key={index}
+              key={pokemon.korean_name}
               pokemon={pokemon}
               addPokemon={addPokemon}
               isSelect={selectPokemon.some((p) => p.id === pokemon.id)}
