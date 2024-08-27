@@ -134,7 +134,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const handleAdd = () => {
     const addFrom = { ...detailPokemon, fromDetail: true };
-    console.log(addFrom);
+    console.log(dispatch(addPokemon(addFrom)));
     dispatch(addPokemon(addFrom));
     // if (addPokemon(detailPokemon)) {
     //   dispatch(addPokemon(detailPokemon));

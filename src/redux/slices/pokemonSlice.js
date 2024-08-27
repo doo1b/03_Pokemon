@@ -13,7 +13,6 @@ const pokemonSlice = createSlice({
   reducers: {
     addPokemon: (state, action) => {
       const pokemon = action.payload;
-      console.log(pokemon);
       state.selectPokemon.some((p) => p.id === pokemon.id)
         ? Swal.fire({
             text: "같은 포켓몬은 중복으로 등록할 수 없습니다!",
@@ -24,7 +23,7 @@ const pokemonSlice = createSlice({
             text: "더 이상 포켓몬을 등록할 수 없습니다!",
             icon: "error",
           })
-        : state.selectPokemon.fromDetail
+        : pokemon.fromDetail
         ? ((state.selectPokemon.push(pokemon),
           localStorage.setItem(
             "selectPokemon",
@@ -39,7 +38,8 @@ const pokemonSlice = createSlice({
           localStorage.setItem(
             "selectPokemon",
             JSON.stringify(state.selectPokemon)
-          ));
+          ),
+          console.log(pokemon.fromDetail));
       //   if () {
       //     return "duplicate";
       //   } else if (state.selectPokemon.length >= 6) {
