@@ -1,8 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { NameP, NumP } from "../GlobalStyle";
-import { usePokemon } from "../context/PokemonContext ";
+import { addPokemon } from "../redux/slices/pokemonSlice";
 
 const PokeCards = styled.div`
   justify-self: center;
@@ -45,12 +46,11 @@ const AddButton = styled.button`
 
 const PokeCard = ({ pokemon, isSelect }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { addPokemon } = usePokemon();
   const handleAdd = () => {
-    addPokemon(pokemon);
+    dispatch(addPokemon(pokemon));
   };
-
   return (
     <PokeCards
       onClick={() => {

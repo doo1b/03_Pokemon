@@ -1,7 +1,8 @@
 import React from "react";
 import PokeCard from "./PokeCard";
 import styled from "styled-components";
-import { usePokemon } from "../context/PokemonContext ";
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemon } from "../redux/slices/pokemonSlice";
 
 const ListBox = styled.div`
   margin-top: 20px;
@@ -15,7 +16,12 @@ const ListBox = styled.div`
 `;
 
 const PokeList = ({ pokelist }) => {
-  const { addPokemon, selectPokemon } = usePokemon();
+  const dispatch = useDispatch();
+  const selectPokemon = useSelector((state) => state.pokemon.selectPokemon);
+
+  const handleAdd = (pokemon) => {
+    dispatch(addPokemon(pokemon));
+  };
   return (
     <>
       <ListBox>

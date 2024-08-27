@@ -1,7 +1,8 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { delPokemon } from "../redux/slices/pokemonSlice";
 import SelectPokemonCard from "./SelectPokemonCard";
-import { usePokemon } from "../context/PokemonContext ";
 
 const InputBox = styled.div`
   width: 1200px;
@@ -27,7 +28,9 @@ const PokeBall = styled.img`
 `;
 
 const Dashboard = () => {
-  const { selectPokemon, delPokemon } = usePokemon();
+  const selectPokemon = useSelector((state) => state.pokemon.selectPokemon);
+  const dispatch = useDispatch();
+
   const maxPokemonCount = 6;
 
   return (
@@ -38,7 +41,7 @@ const Dashboard = () => {
           <SelectPokemonCard
             key={pokemon.id}
             pokemon={pokemon}
-            delPokemon={delPokemon}
+            delPokemon={() => dispatch(delPokemon(pokemon.id))}
           />
         ))}
 

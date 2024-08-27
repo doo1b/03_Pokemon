@@ -1,8 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import MOCK_DATA from "../mock";
-import { usePokemon } from "../context/PokemonContext ";
+import { addPokemon } from "../redux/slices/pokemonSlice";
 import Swal from "sweetalert2";
 
 const getTypeColor = (type) => {
@@ -130,40 +131,40 @@ const Detail = () => {
     (pokemon) => pokemon.id === Number(id)
   );
 
-  const { addPokemon } = usePokemon();
-
+  const dispatch = useDispatch();
   const handleAdd = () => {
-    if (addPokemon(detailPokemon)) {
-      return Swal.fire({
-        text: "포켓몬이 등록 되었습니다!",
-        icon: "success",
-      });
-    }
+    const addFrom = { ...detailPokemon, fromDetail: true };
+    console.log(addFrom);
+    dispatch(addPokemon(addFrom));
+    // if (addPokemon(detailPokemon)) {
+    //   dispatch(addPokemon(detailPokemon));
+    // return Swal.fire({
+    //   text: "포켓몬이 성공적으로 추가되었습니다!",
+    //   icon: "success",
+    // });
+    // }
   };
-
   return (
-    <>
-      <DetailBall>
-        <PBox>
-          <Num>No.{detailPokemon.id.toString().padStart(3, "0")}</Num>
-          <Name type={detailPokemon.types}>{detailPokemon.korean_name}</Name>
-        </PBox>
-        <DetailImg src={detailPokemon.img_url} />
-        <Description>{detailPokemon.description}</Description>
-        <div>
-          타입 :{" "}
-          {detailPokemon.types.map((type, index) => (
-            <Type key={`${type}-${index}`} type={type}>
-              {detailPokemon.types.length - 1 === index ? type : type + ", "}
-            </Type>
-          ))}
-        </div>
-        <ButtonBox>
-          <AddButton onClick={handleAdd}>추가</AddButton>
-          <BackButton onClick={() => navigate(-1)}>뒤로가기</BackButton>
-        </ButtonBox>
-      </DetailBall>
-    </>
+    <DetailBall>
+      <PBox>
+        <Num>No.{detailPokemon.id.toString().padStart(3, "0")}</Num>
+        <Name type={detailPokemon.types}>{detailPokemon.korean_name}</Name>
+      </PBox>
+      <DetailImg src={detailPokemon.img_url} />
+      <Description>{detailPokemon.description}</Description>
+      <div>
+        타입 :{" "}
+        {detailPokemon.types.map((type, index) => (
+          <Type key={`${type}-${index}`} type={type}>
+            {detailPokemon.types.length - 1 === index ? type : type + ", "}
+          </Type>
+        ))}
+      </div>
+      <ButtonBox>
+        <AddButton onClick={handleAdd}>추가</AddButton>
+        <BackButton onClick={() => navigate(-1)}>뒤로가기</BackButton>
+      </ButtonBox>
+    </DetailBall>
   );
 };
 
