@@ -16,10 +16,10 @@ const PokeList = ({ pokelist, addPokemon, selectPokemon }) => {
   return (
     <>
       <ListBox>
-        {pokelist.map((pokemon, index) => {
+        {pokelist.map((pokemon) => {
           return (
             <PokeCard
-              key={index}
+              key={pokemon.korean_name}
               pokemon={pokemon}
               addPokemon={addPokemon}
               isSelect={selectPokemon.some((p) => p.id === pokemon.id)}
