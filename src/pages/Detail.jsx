@@ -134,16 +134,9 @@ const Detail = () => {
   const dispatch = useDispatch();
   const handleAdd = () => {
     const addFrom = { ...detailPokemon, fromDetail: true };
-    console.log(dispatch(addPokemon(addFrom)));
     dispatch(addPokemon(addFrom));
-    // if (addPokemon(detailPokemon)) {
-    //   dispatch(addPokemon(detailPokemon));
-    // return Swal.fire({
-    //   text: "포켓몬이 성공적으로 추가되었습니다!",
-    //   icon: "success",
-    // });
-    // }
   };
+
   return (
     <DetailBall>
       <PBox>
